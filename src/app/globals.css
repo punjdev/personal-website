@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui"{
-  themes: business --default, nord;
+  themes: night --default, nord;
 };
 
 :root {
@@ -8,6 +8,11 @@
   --foreground: #171717;
 }
 
+/* .btn:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+} */
+ 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
