@@ -12,7 +12,7 @@ export default function ContactMe() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="mailto:dev.punjabi@mail.utoronto.ca" className="btn btn-primary">
+          <a href="" className="btn btn-primary">
             Email Me
           </a>
 
