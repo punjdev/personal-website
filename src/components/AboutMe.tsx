@@ -4,7 +4,7 @@ import Link from "next/link";
 import { RoughNotation } from "react-rough-notation";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
-// 1️⃣ Color map (flat version — no borders)
+// colour map
 const colorClasses = {
   blue: "bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300",
   gray: "bg-gray-100 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-300",
@@ -22,7 +22,7 @@ const colorClasses = {
 
 type ColorKey = keyof typeof colorClasses;
 
-// 2️⃣ Skills (grouped + mapped)
+// Skills (grouped + mapped)
 const skills: { label: string; color: ColorKey }[] = [
   // Languages
   { label: "C#", color: "indigo" },
