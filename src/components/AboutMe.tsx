@@ -1,6 +1,8 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { RoughNotation } from "react-rough-notation";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
 // 1️⃣ Color map (flat version — no borders)
 const colorClasses = {
@@ -27,11 +29,14 @@ const skills: { label: string; color: ColorKey }[] = [
   { label: "TypeScript", color: "yellow" },
   { label: "Python", color: "blue" },
   { label: "SQL", color: "gray" },
-  // { label: "Bash", color: "green" },
+  { label: "Bash", color: "green" },
+  { label: "KornShell", color: "gray" },
 
   // Frameworks / Libraries
   { label: "React", color: "blue" },
+  { label: "Next.js", color: "gray" },
   { label: "Node.js", color: "green" },
+  { label: "Tailwind CSS", color: "blue" },
   { label: "Entity Framework", color: "purple" },
   { label: "DevExpress", color: "pink" },
 
@@ -46,6 +51,7 @@ const skills: { label: string; color: ColorKey }[] = [
   { label: "Docker", color: "blue" },
   { label: "IBM DataStage", color: "red" },
   { label: "AutoSys", color: "gray" },
+  { label: "Git", color: "red" },
 ];
 
 export default function AboutMe() {
@@ -54,8 +60,11 @@ export default function AboutMe() {
       <section className="flex flex-col lg:flex-row items-start w-full px-6 py-20 bg-base-100 text-base-content">
         {/* Left Section */}
         <div className="flex flex-col items-center w-full lg:w-1/3 mb-10 lg:mb-0">
-          <img
+          <Image
             src="/me.png"
+            alt="Portrait of Dev Punjabi"
+            width={256}
+            height={256}
             className="w-64 h-64 rounded-full object-cover shadow-lg mb-4"
           />
           <h1 className="text-3xl font-bold text-primary">Dev Punjabi</h1>
@@ -65,6 +74,36 @@ export default function AboutMe() {
           <p className="text-lg font-medium text-base-content/70">
             Periscope Capital
           </p>
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <a
+              href="mailto:dev.punjabi@mail.utoronto.ca"
+              className="btn btn-sm btn-outline btn-circle"
+              aria-label="Email"
+              title="Email"
+            >
+              <FaEnvelope className="text-base" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/devpunjabi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-outline btn-circle"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+            >
+              <FaLinkedin className="text-base" />
+            </a>
+            <a
+              href="https://github.com/punjdev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-outline btn-circle"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <FaGithub className="text-base" />
+            </a>
+          </div>
           <div className="mt-6 w-full text-center">
             <h3 className="text-xl font-semibold mb-4">Skills</h3>
             <ul className="flex flex-wrap justify-center gap-2">
@@ -85,14 +124,13 @@ export default function AboutMe() {
               strokeWidth={2}
             >
               <Link
-              href="/Dev_Punjabi_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="btn btn-sm btn-ghost text-primary text-lg">
+                href="/Dev_Punjabi_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-sm btn-ghost text-primary text-lg"
+              >
                 See My Resume!
-              </button>
-            </Link>
+              </Link>
             </RoughNotation>
           </div>
         </div>
@@ -103,7 +141,7 @@ export default function AboutMe() {
         <div className="w-full lg:w-2/3 bg-base-100 rounded-xl p-6 space-y-6">
           <p className="text-lg leading-relaxed text-base-content/90">
             I’m a fourth-year Computer Science student at the University of
-            Toronto with 1.5 years of professional development experience at
+            Toronto with 2 years of professional development experience at
             Scotiabank and Periscope Capital.
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
@@ -128,19 +166,41 @@ export default function AboutMe() {
 
           <div className="carousel w-full">
             <div id="item1" className="carousel-item w-full">
-              <img
+              <Image
                 src="https://github.com/punjdev/portfolio/assets/90057112/c48b5aa8-f781-411a-a4bd-09d0f2224a8a"
+                alt="View from Whistler-Blackcomb Peak-to-Peak"
+                width={1600}
+                height={900}
+                unoptimized
                 className="w-full"
               />
             </div>
             <div id="item2" className="carousel-item w-full">
-              <img src="/images/garibaldi.jpeg" className="w-full" />
+              <Image
+                src="/images/garibaldi.jpeg"
+                alt="Hiking at Garibaldi Lake"
+                width={1600}
+                height={900}
+                className="w-full"
+              />
             </div>
             <div id="item3" className="carousel-item w-full">
-              <img src="/images/yosemite.jpeg" className="w-full" />
+              <Image
+                src="/images/yosemite.jpeg"
+                alt="Trail view in Yosemite"
+                width={1600}
+                height={900}
+                className="w-full"
+              />
             </div>
             <div id="item4" className="carousel-item w-full">
-              <img src="/images/tin-hat.jpeg" className="w-full" />
+              <Image
+                src="/images/tin-hat.jpeg"
+                alt="Tin Hat Mountain landscape"
+                width={1600}
+                height={900}
+                className="w-full"
+              />
             </div>
           </div>
           <div className="flex w-full justify-center gap-2 py-2">
