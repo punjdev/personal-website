@@ -55,8 +55,7 @@ export default function AboutMe() {
         {/* Left Section */}
         <div className="flex flex-col items-center w-full lg:w-1/3 mb-10 lg:mb-0">
           <img
-            src="https://media.licdn.com/dms/image/v2/D5603AQFTcjzQlRsStA/profile-displayphoto-shrink_800_800/B56ZUGxKZLGoAc-/0/1739575306354?e=1765411200&v=beta&t=5ClsK4eOCbQKYPPUfFNFQbTWqvPfmPn40pOzrGm8QxY"
-            alt="Dev Punjabi"
+            src="/me.png"
             className="w-64 h-64 rounded-full object-cover shadow-lg mb-4"
           />
           <h1 className="text-3xl font-bold text-primary">Dev Punjabi</h1>
