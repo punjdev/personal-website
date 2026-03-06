@@ -25,7 +25,7 @@ export default function ContactMe() {
   };
 
   return (
-    <main className="px-6 py-20 lg:px-10">
+    <main className="min-h-full px-6 pb-10 pt-4 lg:px-10 lg:pb-12 lg:pt-6">
       <div className="mx-auto max-w-2xl">
         <div className="card border border-base-300 bg-base-100 shadow-xl fade-up">
           <div className="card-body gap-6">
@@ -45,7 +45,7 @@ export default function ContactMe() {
                 </RoughNotation>
               </h1>
               <p className="text-base-content/75">
-                Open to new opportunities or jus want to say hi?
+                Open to new opportunities or just want to say hi?
               </p>
             </div>
 
@@ -116,7 +116,7 @@ export default function ContactMe() {
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   className="textarea textarea-bordered min-h-32 w-full"
-                  placeholder="Tell me what you're working on"
+                  placeholder="Whats up?"
                 />
               </label>
 

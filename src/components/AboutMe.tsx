@@ -56,8 +56,8 @@ const skills: { label: string; color: ColorKey }[] = [
 
 export default function AboutMe() {
   return (
-    <div>
-      <section className="flex flex-col lg:flex-row items-start w-full px-6 py-20 bg-base-100 text-base-content">
+    <div className="h-full">
+      <section className="flex min-h-full w-full flex-col items-start bg-base-100 px-6 pb-10 pt-4 text-base-content lg:flex-row lg:pb-12 lg:pt-6">
         {/* Left Section */}
         <div className="flex flex-col items-center w-full lg:w-1/3 mb-10 lg:mb-0">
           <Image

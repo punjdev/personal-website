@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
+import InteractiveMode from "@/components/InteractiveMode";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +32,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen bg-base-100 text-base-content">
-          <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
+        <div className="min-h-dvh bg-base-100 text-base-content">
+          <div
+            id="site-root"
+            className="mx-auto flex min-h-dvh max-w-[1440px] flex-col px-6 sm:px-8 lg:px-12"
+          >
             <Header />
-            <main className="mt-4">
+            <main className="mt-4 flex-1 min-h-0">
               {children}
             </main>
             <Footer />
           </div>
         </div>
+        <InteractiveMode rootId="site-root" />
         <Analytics />
       </body>
     </html>

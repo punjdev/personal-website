@@ -8,7 +8,7 @@ export default function Hero() {
   const [aboutColor, contactColor] = useMemo(() => ["#93c5fd", "#f9a8d4"], []);
 
   return (
-    <section className="px-6 pt-24 pb-16 text-center text-base-content lg:px-10">
+    <section className="flex min-h-full items-center px-6 py-10 text-center text-base-content lg:px-10">
       <div className="mx-auto max-w-2xl">
         <h1 className="text-4xl font-bold lg:text-6xl">
           Hi, I’m <span className="text-primary">Dev Punjabi</span> :)
