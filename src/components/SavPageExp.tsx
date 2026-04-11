@@ -359,6 +359,7 @@ export default function SavPageExp() {
     if (password === PASSWORD) {
       setError("");
       setPassword("");
+      void playCurrentTrack();
       transitionToScene("p1");
       return;
     }
