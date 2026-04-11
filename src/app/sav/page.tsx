@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import SavPageExp from "@/components/SavPageExp";
 
 const savPhotos = [
@@ -25,13 +27,41 @@ const savPhotos = [
   "/sav/pumpkin.jpeg",
 ] as const;
 
-const rowCount = 6;
+const desktopTileSizeRem = 10;
+const mobileTileSizeRem = 7;
+
+function getResponsiveRowCount() {
+  if (typeof window === "undefined") {
+    return 10;
+  }
+
+  const rootFontSize = Number.parseFloat(
+    window.getComputedStyle(document.documentElement).fontSize,
+  );
+  const tileSizeRem = window.innerWidth <= 640 ? mobileTileSizeRem : desktopTileSizeRem;
+  const tileSizePx = tileSizeRem * rootFontSize;
+
+  return Math.max(10, Math.ceil(window.innerHeight / tileSizePx) + 3);
+}
 
 function rotateRow<T>(items: readonly T[], offset: number) {
   return items.map((_, index) => items[(index + offset) % items.length]);
 }
 
 export default function SavPage() {
+  const [rowCount, setRowCount] = useState(10);
+
+  useEffect(() => {
+    const updateRowCount = () => {
+      setRowCount(getResponsiveRowCount());
+    };
+
+    updateRowCount();
+    window.addEventListener("resize", updateRowCount);
+
+    return () => window.removeEventListener("resize", updateRowCount);
+  }, []);
+
   const rows = Array.from({ length: rowCount }, (_, rowIndex) =>
     rotateRow(savPhotos, rowIndex),
   );
