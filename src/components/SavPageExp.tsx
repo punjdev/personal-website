@@ -597,7 +597,7 @@ export default function SavPageExp() {
 
           {scene === "p7" && isSceneReady && (
             <p className="mt-6 text-sm font-medium tracking-[0.06em] text-white/95">
-              I'm so excited!! I've really missed you 
+              I&apos;m so excited!! I&apos;ve really missed you
             </p>
           )}
         </div>
