@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
-import { RoughNotation } from "react-rough-notation";
+import { FormEvent, useState } from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const CONTACT_EMAIL = "dev.punjabi@mail.utoronto.ca";
@@ -11,161 +9,84 @@ export default function ContactMe() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const accentColor = useMemo(() => "#1d65e9", []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const subject = encodeURIComponent(`Website message from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    );
-
+    // TODO: replace with Resend API
+    const subject = encodeURIComponent(`Message from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   };
 
   return (
-    <main className="min-h-full px-6 pb-10 pt-4 lg:px-10 lg:pb-12 lg:pt-6">
-      <div className="mx-auto max-w-2xl">
-        <div className="card border border-base-300 bg-base-100 shadow-xl fade-up">
-          <div className="card-body gap-6">
-            <div className="space-y-3 text-center">
-              <p className="text-sm uppercase tracking-[0.2em] text-secondary">
-                Contact
-              </p>
-              <h1 className="text-3xl font-bold lg:text-4xl">
-                <RoughNotation
-                  show
-                  type="highlight"
-                  color={accentColor}
-                  animationDelay={200}
-                  animationDuration={1200}
-                >
-                  Let&apos;s connect
-                </RoughNotation>
-              </h1>
-              <p className="text-base-content/75">
-                Open to new opportunities or just want to say hi?
-              </p>
-            </div>
+    <section className="flex min-h-full items-center px-6 py-10 lg:px-10">
+      <div className="mx-auto w-full max-w-lg">
+        <h1 className="text-4xl font-bold text-base-content lg:text-5xl">
+          Let&apos;s talk.
+        </h1>
+        <p className="mt-3 text-sm text-base-content/50">
+          Open to new opportunities, collaborations, or just saying hi.
+        </p>
 
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 fade-up delay-1">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="btn btn-outline h-auto justify-start gap-3 px-4 py-3"
-                aria-label="Email"
-              >
-                <FaEnvelope className="text-lg" />
-                <span>Email</span>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/devpunjabi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline h-auto justify-start gap-3 px-4 py-3"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="text-lg" />
-                <span>LinkedIn</span>
-              </a>
-
-              <a
-                href="https://github.com/punjdev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline h-auto justify-start gap-3 px-4 py-3"
-                aria-label="GitHub"
-              >
-                <FaGithub className="text-lg" />
-                <span>GitHub</span>
-              </a>
-            </div>
-
-            <div className="divider my-0 fade-up delay-2">or send a message</div>
-
-            <form onSubmit={handleSubmit} className="space-y-4 fade-up delay-3">
-              <label className="form-control w-full">
-                <span className="label-text mb-1 text-sm">Name</span>
-                <input
-                  required
-                  type="text"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  className="input input-bordered w-full"
-                  placeholder="Your name"
-                />
-              </label>
-
-              <label className="form-control w-full">
-                <span className="label-text mb-1 text-sm">Email</span>
-                <input
-                  required
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  className="input input-bordered w-full"
-                  placeholder="you@company.com"
-                />
-              </label>
-
-              <label className="form-control w-full">
-                <span className="label-text mb-1 text-sm">Message</span>
-                <textarea
-                  required
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  className="textarea textarea-bordered min-h-32 w-full"
-                  placeholder="Whats up?"
-                />
-              </label>
-
-              <button type="submit" className="btn btn-primary w-full">
-                Open Email Draft
-              </button>
-            </form>
-
-            <div className="text-center fade-up delay-3">
-              <Link
-                href="/"
-                className="text-sm text-base-content/70 underline-offset-4 hover:underline"
-              >
-                Back to home
-              </Link>
-            </div>
+        <form onSubmit={handleSubmit} className="mt-10 space-y-3">
+          <div className="grid grid-cols-2 gap-3">
+            <input
+              required
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="input input-bordered w-full"
+              placeholder="Name"
+            />
+            <input
+              required
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input input-bordered w-full"
+              placeholder="Email"
+            />
           </div>
+          <textarea
+            required
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="textarea textarea-bordered w-full min-h-36 resize-none"
+            placeholder="What's on your mind?"
+          />
+          <button type="submit" className="btn btn-primary w-full">
+            Send
+          </button>
+        </form>
+
+        <div className="mt-6 flex gap-1">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="btn btn-ghost btn-sm btn-circle text-base-content/50 hover:text-base-content"
+            aria-label="Email"
+          >
+            <FaEnvelope />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/devpunjabi/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-ghost btn-sm btn-circle text-base-content/50 hover:text-base-content"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="https://github.com/punjdev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-ghost btn-sm btn-circle text-base-content/50 hover:text-base-content"
+            aria-label="GitHub"
+          >
+            <FaGithub />
+          </a>
         </div>
       </div>
-
-      <style jsx>{`
-        .fade-up {
-          animation: fadeUp 0.55s ease-out both;
-        }
-
-        .delay-1 {
-          animation-delay: 120ms;
-        }
-
-        .delay-2 {
-          animation-delay: 200ms;
-        }
-
-        .delay-3 {
-          animation-delay: 280ms;
-        }
-
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </main>
+    </section>
   );
 }

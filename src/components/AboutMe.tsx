@@ -124,7 +124,7 @@ export default function AboutMe() {
               strokeWidth={2}
             >
               <Link
-                href="/Dev_Punjabi_Resume.pdf"
+                href="/Dev_Punjabi_Resume_v2.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-sm btn-ghost text-primary text-lg"
