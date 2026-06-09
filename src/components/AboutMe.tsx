@@ -140,9 +140,9 @@ export default function AboutMe() {
         {/* Right Section*/}
         <div className="w-full lg:w-2/3 bg-base-100 rounded-xl p-6 space-y-6">
           <p className="text-lg leading-relaxed text-base-content/90">
-            I’m a fourth-year Computer Science student at the University of
-            Toronto with 2 years of professional development experience at
-            Scotiabank and Periscope Capital.
+            I&apos;m a Computer Science graduate from the University of Toronto
+            with 2+ years of professional development experience at Scotiabank
+            and Periscope Capital.
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
             At Periscope Capital, I work as a Full Stack Software Developer
@@ -153,8 +153,8 @@ export default function AboutMe() {
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
             Before that, I interned at Scotiabank, where I built internal tools
-            to automate the internal promotion process using Bash, KornShell,
-            and DataStage.
+            to automate deployment workflows across dev, QA, and production
+            environments using Bash, KornShell, and DataStage.
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
             Beyond work, I love exploring the outdoors. In the photos below I’m

@@ -21,9 +21,9 @@ export default function Hero() {
           </span>{" "}
           and a{" "}
           <span className="text-secondary font-medium">
-            Computer Science specialist
+            Computer Science graduate
           </span>{" "}
-          studying at the University of Toronto. Learn more{" "}
+          from the University of Toronto. Learn more{" "}
           <Link
             href="/about"
             className="ml-1 mr-1 font-normal text-black transition-colors"
