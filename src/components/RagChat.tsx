@@ -59,14 +59,18 @@ export default function RagChat() {
         },
       ]);
     } catch (err) {
-      const isRateLimit = err instanceof Error && err.message === "rate_limited";
+      const msg = err instanceof Error ? err.message : "";
+      const isRateLimit = msg === "rate_limited";
+      const isNetwork = msg.includes("fetch") || err instanceof TypeError;
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
           content: isRateLimit
-            ? "Rate limited — please wait a moment and try again (10 requests/min)."
-            : "The API is currently unavailable. Make sure it's running locally or the production URL is configured.",
+            ? "Rate limited — please wait a moment and try again (10 req/min)."
+            : isNetwork
+            ? "Couldn't reach the API — it may be cold-starting on Railway (can take ~30s). Try again in a moment."
+            : "Something went wrong. Try again.",
           error: true,
         },
       ]);

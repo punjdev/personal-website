@@ -1,73 +1,25 @@
 # S&P 500 10-K RAG
 
-A retrieval-augmented generation (RAG) API over 100 S&P 500 companies' most recent 10-K SEC filings. Ask a natural language question; get a grounded answer with citations pointing to the exact filing sections used.
+A question-answering system over SEC 10-K filings. Ask anything about a company's risks or financials and get a cited answer drawn directly from the filing text. 94 companies indexed across Risk Factors (Item 1A) and MD&A (Item 7).
 
-## What's indexed
+## Two problems worth explaining
 
-- **Sections:** Item 1A (Risk Factors) and Item 7 (MD&A) per company
-- **Coverage:** 100 S&P 500 companies
-- **Generation:** Cohere Command R+ with native document citations
-- **Retrieval:** Hybrid dense + BM25 with Cohere reranking
+### The ticker disambiguation problem
 
-## API
+When a user types "What are AMD's risks…" the word *are* matches ticker **ARE** (Alexandria Real Estate). A proper fix would be a named-entity recognition model, but this project covers a fixed, closed set of 94 companies. No reason to add a 500MB ML dependency and an inference step for a problem solvable with a short blocklist.
 
-| Environment | URL |
-|-------------|-----|
-| Local dev | `http://localhost:8000` |
-| Production | Set `NEXT_PUBLIC_RAG_API_URL` in Vercel |
+The solution: if any indexed company's ticker appears verbatim in the query, use it directly. Otherwise, skip tickers that are common English words. Two checks, no model.
 
-### `POST /query`
+### The table of contents trap
 
-```ts
-{
-  query: string      // required, 1–1000 chars
-  ticker?: string    // optional — restrict to one company, e.g. "AAPL"
-  stream?: boolean   // false = JSON response (recommended)
-}
-```
+Microsoft's filings open with a Table of Contents containing lines like *"Item 1A. Risk Factors … page 18"*. The section parser matched these TOC entries and called them the Risk Factors section — returning 50 characters instead of 15,000.
 
-**Response:**
+Fix was one constant: `MIN_SECTION_CHARS = 5000`. Anything shorter is a TOC entry, not real content.
 
-```json
-{
-  "answer": "NVIDIA faces significant risks from US export controls...",
-  "citations": [
-    {
-      "cited_text": "The U.S. government has imposed export controls...",
-      "ticker": "NVDA",
-      "company_name": "NVIDIA Corporation",
-      "section": "risk_factors",
-      "filing_date": "2025-02-25"
-    }
-  ],
-  "latency_ms": 4800
-}
-```
+## Why these services
 
-### `GET /companies`
+**Cohere over OpenAI** — native document citation support in Command R+ meant citations came for free rather than being bolted on with prompt engineering.
 
-Returns the list of all 100 indexed companies with their tickers, names, and filing dates.
+**Qdrant** — straightforward hybrid search (dense + sparse) without the overhead of a managed platform at this scale.
 
-### `GET /health`
-
-```json
-{ "status": "ok", "chunk_count": 11200, "bm25_loaded": true }
-```
-
-## Design notes
-
-**Latency is 3–8 seconds** — the retrieval + reranking + generation pipeline is not fast. A loading state is essential.
-
-**No conversation memory.** Each `/query` call is fully independent. The API doesn't use chat history.
-
-**Unindexed companies return a plain message, not an error.** If a company isn't in the index, `answer` is a helpful plain-text explanation and `citations` will be empty.
-
-**`ticker` is optional but recommended.** Passing it significantly improves retrieval precision for company-specific questions.
-
-**Streaming sends one complete event, not tokens.** `stream: true` delivers the entire answer in a single SSE event — useful only if you want to animate the response client-side after receiving it.
-
-**Rate limit: 10 req/min per IP.** HTTP 429 on breach.
-
-## CORS
-
-Allowed origins: `https://devpunjabi.com`, `https://www.devpunjabi.com`, `http://localhost:3000`.
+**Railway** — simpler cold-start behaviour than serverless for a process that needs to hold the BM25 index in memory.
