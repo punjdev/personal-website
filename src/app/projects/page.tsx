@@ -8,6 +8,18 @@ const projects = [
     description: "RAG API over 100 S&P 500 companies' 10-K SEC filings",
     updatedAt: "Jun 2026",
   },
+  {
+    name: "Protein-Based Antibiotic Resistance Classification",
+    slug: "antibiotic-resistance",
+    description: "ResNet-1D model predicting antibiotic resistance class from protein sequences",
+    updatedAt: "Dec 2025",
+  },
+  {
+    name: "devpunjabi.com",
+    slug: "personal-website",
+    description: "This site. Next.js 15, TailwindCSS v4, DaisyUI v5, deployed on Vercel",
+    updatedAt: "Jun 2026",
+  },
 ];
 
 export default function ProjectsPage() {

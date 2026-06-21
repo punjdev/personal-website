@@ -154,7 +154,7 @@ export default function AboutMe() {
         {/* Right Section*/}
         <div className="w-full lg:w-2/3 bg-base-100 rounded-xl p-6 space-y-6">
           <p className="text-lg leading-relaxed text-base-content/90">
-            I&apos;m a Computer Science graduate from the University of Toronto
+            I am a Computer Science graduate from the University of Toronto
             with 2+ years of professional development experience at Scotiabank
             and Periscope Capital.
           </p>
@@ -167,11 +167,11 @@ export default function AboutMe() {
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
             Before that, I interned at Scotiabank, where I built internal tools
-            to automate deployment workflows across dev, QA, and production
+            to automate deployment workflows across development, QA, and production
             environments using Bash, KornShell, and DataStage.
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
-            Beyond work, I love exploring the outdoors. In the photos below I’m
+            Beyond work, I love exploring the outdoors. In the photos below I am
             at the Whistler-Blackcomb Peak-to-Peak, Garibaldi Lake, Yosemite and
             Tin Hat Mountain hikes. Hiking reminds me of what I enjoy about
             development, solving problems step by step, navigating challenges,
