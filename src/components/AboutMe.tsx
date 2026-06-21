@@ -25,33 +25,47 @@ type ColorKey = keyof typeof colorClasses;
 // Skills (grouped + mapped)
 const skills: { label: string; color: ColorKey }[] = [
   // Languages
-  { label: "C#", color: "indigo" },
-  { label: "TypeScript", color: "yellow" },
   { label: "Python", color: "blue" },
+  { label: "TypeScript", color: "blue" },
+  { label: "JavaScript", color: "yellow" },
+  { label: "C#", color: "indigo" },
+  { label: "Java", color: "red" },
   { label: "SQL", color: "gray" },
   { label: "Bash", color: "green" },
-  { label: "KornShell", color: "gray" },
 
-  // Frameworks / Libraries
+  // Frameworks & Libraries
   { label: "React", color: "blue" },
   { label: "Next.js", color: "gray" },
   { label: "Node.js", color: "green" },
-  { label: "Tailwind CSS", color: "blue" },
+  { label: ".NET", color: "purple" },
   { label: "Entity Framework", color: "purple" },
-  { label: "DevExpress", color: "pink" },
+  { label: "FastAPI", color: "green" },
 
   // Databases
   { label: "MySQL", color: "blue" },
-  { label: "SQL Server", color: "indigo" },
-  { label: "Oracle", color: "red" },
-  { label: "PostgreSQL", color: "green" },
+  { label: "PostgreSQL", color: "blue" },
+  { label: "Microsoft SQL Server", color: "indigo" },
+  { label: "Cassandra", color: "purple" },
 
-  // Cloud / Infra / Tools
+  // Cloud & DevOps
   { label: "AWS", color: "yellow" },
   { label: "Docker", color: "blue" },
-  { label: "IBM DataStage", color: "red" },
-  { label: "AutoSys", color: "gray" },
+  { label: "Bitbucket Pipelines", color: "indigo" },
+  { label: "Vercel", color: "gray" },
+
+  // Data & ML
+  { label: "PyTorch", color: "red" },
+  { label: "Cohere", color: "pink" },
+  { label: "Qdrant", color: "indigo" },
+  { label: "NumPy", color: "blue" },
+  { label: "Pandas", color: "green" },
+  { label: "Matplotlib", color: "yellow" },
+
+  // Tools
   { label: "Git", color: "red" },
+  { label: "Bloomberg API", color: "gray" },
+  { label: "IBM DataStage", color: "red" },
+  { label: "Jira", color: "blue" },
 ];
 
 export default function AboutMe() {
@@ -76,7 +90,7 @@ export default function AboutMe() {
           </p>
           <div className="mt-4 flex items-center justify-center gap-3">
             <a
-              href="mailto:dev.punjabi@mail.utoronto.ca"
+              href="mailto:dev@devpunjabi.com"
               className="btn btn-sm btn-outline btn-circle"
               aria-label="Email"
               title="Email"
