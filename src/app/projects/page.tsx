@@ -6,7 +6,7 @@ const projects = [
     name: "S&P 500 10-K RAG",
     slug: "sp500-rag",
     description: "RAG API over 100 S&P 500 companies' 10-K SEC filings",
-    updatedAt: "Jun 2025",
+    updatedAt: "Jun 2026",
   },
 ];
 

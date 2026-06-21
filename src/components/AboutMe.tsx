@@ -61,7 +61,7 @@ export default function AboutMe() {
         {/* Left Section */}
         <div className="flex flex-col items-center w-full lg:w-1/3 mb-10 lg:mb-0">
           <Image
-            src="/me.png"
+            src="/per-15-anv.jpeg"
             alt="Portrait of Dev Punjabi"
             width={256}
             height={256}
