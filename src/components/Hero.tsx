@@ -16,11 +16,11 @@ export default function Hero() {
 
         <p className="mt-4 text-lg lg:text-2xl text-base-content/80 leading-relaxed">
           I’m a{" "}
-          <span className="text-secondary font-medium">
+          <span className="text-primary font-medium">
             Software Developer at Periscope Capital
           </span>{" "}
           and a{" "}
-          <span className="text-secondary font-medium">
+          <span className="text-primary font-medium">
             Computer Science graduate
           </span>{" "}
           from the University of Toronto. Learn more{" "}
