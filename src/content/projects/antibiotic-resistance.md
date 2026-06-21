@@ -80,8 +80,8 @@ CARD is also a curated and taxonomically focused database. Resistance genes from
 
 This project was built with three teammates as part of CSC413 at the University of Toronto.
 
-**Mark Noge** (nogemark) | University of Toronto
+**Mark Noge** (mark.noge@mail.utoronto.ca) | University of Toronto
 
-**Amas Tam** (tamlik) | University of Toronto
+**Amas Tam** (amas.tam@mail.utoronto.ca) | University of Toronto
 
-**Kevin Thevara** (thevarak) | University of Toronto
+**Kevin Thevara** (amas.tam@mail.utoronto.ca) | University of Toronto
