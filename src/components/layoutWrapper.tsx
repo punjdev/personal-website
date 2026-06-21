@@ -28,7 +28,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
         </main>
         {!hideChrome && <Footer />}
       </div>
-      {!hideChrome && <InteractiveMode rootId="site-root" />}
+      <InteractiveMode />
     </>
   );
 }
