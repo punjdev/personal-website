@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ProjectsHeading from "@/components/ProjectsHeading";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Things I've built — a hybrid-retrieval RAG system over SEC 10-K filings, a ResNet-1D protein classifier, and this site.",
+};
 
 const projects = [
   {

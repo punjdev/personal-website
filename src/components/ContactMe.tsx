@@ -1,8 +1,9 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState, useTransition } from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { RoughNotation } from "react-rough-notation";
+import { sendContactEmail } from "@/app/actions/contact";
 
 const CONTACT_EMAIL = "dev@devpunjabi.com";
 
@@ -10,15 +11,46 @@ export default function ContactMe() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (status === "idle") return;
+    const t = setTimeout(() => setStatus("idle"), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent(`Message from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    startTransition(async () => {
+      try {
+        await sendContactEmail(name, email, message);
+        setStatus("sent");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } catch {
+        setStatus("error");
+      }
+    });
   };
 
   return (
+    <>
+    {status !== "idle" && (
+      <div className="toast toast-end toast-bottom z-50">
+        {status === "sent" && (
+          <div role="alert" className="alert alert-success shadow-md">
+            <span>Message sent. Check your inbox.</span>
+          </div>
+        )}
+        {status === "error" && (
+          <div role="alert" className="alert alert-error shadow-md">
+            <span>Something went wrong. Please try again.</span>
+          </div>
+        )}
+      </div>
+    )}
     <section className="flex min-h-full items-center px-6 py-10 lg:px-10">
       <div className="mx-auto w-full max-w-lg">
         <h1 className="text-4xl font-bold text-base-content lg:text-5xl">
@@ -65,8 +97,8 @@ export default function ContactMe() {
                 className="textarea textarea-bordered w-full min-h-36 resize-none"
                 placeholder="What's on your mind?"
               />
-              <button type="submit" className="btn btn-primary w-full">
-                Send
+              <button type="submit" disabled={isPending} className="btn btn-primary w-full">
+                {isPending ? "Sending..." : "Send"}
               </button>
             </form>
 
@@ -101,5 +133,6 @@ export default function ContactMe() {
         </RoughNotation>
       </div>
     </section>
+    </>
   );
 }

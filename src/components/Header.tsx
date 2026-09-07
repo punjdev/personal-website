@@ -1,6 +1,11 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
+// Kept in sync with the pre-paint script in app/layout.tsx.
+const THEMES = { light: "retro", dark: "retro-dark" } as const;
+const STORAGE_KEY = "theme";
 
 const links = [
   { href: "/", label: "Home" },
@@ -14,6 +19,27 @@ export default function Header() {
   const pathname = usePathname();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const [isDark, setIsDark] = useState(false);
+
+  // The layout script has already applied the stored theme; read it back so the
+  // toggle renders in the right position after hydration.
+  useEffect(() => {
+    setIsDark(
+      document.documentElement.getAttribute("data-theme") === THEMES.dark,
+    );
+  }, []);
+
+  const handleThemeChange = (checked: boolean) => {
+    const nextTheme = checked ? THEMES.dark : THEMES.light;
+    setIsDark(checked);
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    try {
+      localStorage.setItem(STORAGE_KEY, nextTheme);
+    } catch {
+      // Private browsing or blocked storage: theme still applies for this visit.
+    }
+  };
 
   return (
     <div className="navbar bg-base-100 py-8">
@@ -62,7 +88,12 @@ export default function Header() {
 
         {/* Theme toggle: always visible */}
         <label className="swap swap-rotate">
-          <input type="checkbox" className="theme-controller" value="retro-dark" />
+          <input
+            type="checkbox"
+            checked={isDark}
+            onChange={(event) => handleThemeChange(event.target.checked)}
+            aria-label="Toggle dark mode"
+          />
 
           <svg
             className="swap-off h-8 w-8 fill-current"

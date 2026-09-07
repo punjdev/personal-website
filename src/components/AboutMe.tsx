@@ -4,68 +4,52 @@ import Link from "next/link";
 import { RoughNotation } from "react-rough-notation";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
-// colour map
-const colorClasses = {
-  blue: "bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300",
-  gray: "bg-gray-100 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-300",
-  red: "bg-red-100 text-red-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300",
-  green:
-    "bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300",
-  yellow:
-    "bg-yellow-100 text-yellow-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300",
-  indigo:
-    "bg-indigo-100 text-indigo-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-indigo-900 dark:text-indigo-300",
-  purple:
-    "bg-purple-100 text-purple-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-purple-900 dark:text-purple-300",
-  pink: "bg-pink-100 text-pink-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-pink-900 dark:text-pink-300",
-} as const;
-
-type ColorKey = keyof typeof colorClasses;
-
-// Skills (grouped + mapped)
-const skills: { label: string; color: ColorKey }[] = [
-  // Languages
-  { label: "Python", color: "blue" },
-  { label: "TypeScript", color: "blue" },
-  { label: "JavaScript", color: "yellow" },
-  { label: "C#", color: "indigo" },
-  { label: "Java", color: "red" },
-  { label: "SQL", color: "gray" },
-  { label: "Bash", color: "green" },
-
-  // Frameworks & Libraries
-  { label: "React", color: "blue" },
-  { label: "Next.js", color: "gray" },
-  { label: "Node.js", color: "green" },
-  { label: ".NET", color: "purple" },
-  { label: "Entity Framework", color: "purple" },
-  { label: "FastAPI", color: "green" },
-
-  // Databases
-  { label: "MySQL", color: "blue" },
-  { label: "PostgreSQL", color: "blue" },
-  { label: "Microsoft SQL Server", color: "indigo" },
-  { label: "Cassandra", color: "purple" },
-
-  // Cloud & DevOps
-  { label: "AWS", color: "yellow" },
-  { label: "Docker", color: "blue" },
-  { label: "Bitbucket Pipelines", color: "indigo" },
-  { label: "Vercel", color: "gray" },
-
-  // Data & ML
-  { label: "PyTorch", color: "red" },
-  { label: "Cohere", color: "pink" },
-  { label: "Qdrant", color: "indigo" },
-  { label: "NumPy", color: "blue" },
-  { label: "Pandas", color: "green" },
-  { label: "Matplotlib", color: "yellow" },
-
-  // Tools
-  { label: "Git", color: "red" },
-  { label: "Bloomberg API", color: "gray" },
-  { label: "IBM DataStage", color: "red" },
-  { label: "Jira", color: "blue" },
+// Skills, grouped so the list reads as areas of work rather than a keyword wall.
+const skillGroups: { group: string; items: string[] }[] = [
+  {
+    group: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "C#", "Java", "SQL", "Bash"],
+  },
+  {
+    group: "Frameworks",
+    items: [
+      "React",
+      "Next.js",
+      "Node.js",
+      ".NET",
+      "Entity Framework",
+      "FastAPI",
+    ],
+  },
+  {
+    group: "Data",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "Microsoft SQL Server",
+      "Cassandra",
+      "Qdrant",
+      "Pandas",
+      "NumPy",
+    ],
+  },
+  {
+    group: "ML & AI",
+    items: ["PyTorch", "Cohere", "Matplotlib"],
+  },
+  {
+    group: "Infrastructure & Tools",
+    items: [
+      "AWS",
+      "Docker",
+      "Vercel",
+      "Git",
+      "Bitbucket Pipelines",
+      "Bloomberg API",
+      "IBM DataStage",
+      "Jira",
+    ],
+  },
 ];
 
 export default function AboutMe() {
@@ -83,10 +67,10 @@ export default function AboutMe() {
           />
           <h1 className="text-3xl font-bold text-primary">Dev Punjabi</h1>
           <p className="text-lg font-medium text-base-content/70">
-            Full Stack Software Developer
+            Tech Consultant
           </p>
           <p className="text-lg font-medium text-base-content/70">
-            Periscope Capital
+            Netlight
           </p>
           <div className="mt-4 flex items-center justify-center gap-3">
             <a
@@ -118,15 +102,26 @@ export default function AboutMe() {
               <FaGithub className="text-base" />
             </a>
           </div>
-          <div className="mt-6 w-full text-center">
-            <h3 className="text-xl font-semibold mb-4">Skills</h3>
-            <ul className="flex flex-wrap justify-center gap-2">
-              {skills.map(({ label, color }) => (
-                <li key={label}>
-                  <span className={colorClasses[color]}>{label}</span>
-                </li>
+          <div className="mt-8 w-full">
+            <h3 className="mb-4 text-center text-xl font-semibold">Skills</h3>
+            <div className="space-y-4">
+              {skillGroups.map(({ group, items }) => (
+                <div key={group}>
+                  <p className="mb-2 text-center text-xs font-semibold uppercase tracking-wider text-base-content/50">
+                    {group}
+                  </p>
+                  <ul className="flex flex-wrap justify-center gap-1.5">
+                    {items.map((label) => (
+                      <li key={label}>
+                        <span className="badge badge-sm badge-outline border-base-content/25 text-base-content/80">
+                          {label}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
           <div className="flex justify-center mt-8">
             <RoughNotation
@@ -159,11 +154,17 @@ export default function AboutMe() {
             and Periscope Capital.
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
-            At Periscope Capital, I work as a Full Stack Software Developer
-            building internal systems that support high-volume financial
-            operations. My focus is on developing automation tools, data
-            pipelines, and front-end modules that improve reliability and
-            efficiency across trading workflows.
+            I am currently a Tech Consultant at Netlight, where I work with
+            clients to design and build software that solves real business
+            problems, bringing my full-stack background to teams across
+            different industries.
+          </p>
+          <p className="text-lg leading-relaxed text-base-content/90">
+            Before Netlight, I spent over two years at Periscope Capital as a
+            Full Stack Software Developer, building internal systems that
+            support high-volume financial operations. My focus was on
+            developing automation tools, data pipelines, and front-end modules
+            that improve reliability and efficiency across trading workflows.
           </p>
           <p className="text-lg leading-relaxed text-base-content/90">
             Before that, I interned at Scotiabank, where I built internal tools
