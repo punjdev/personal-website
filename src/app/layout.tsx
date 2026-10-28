@@ -7,11 +7,11 @@ import LayoutWrapper from "@/components/layoutWrapper";
 export const metadata: Metadata = {
   metadataBase: new URL("https://devpunjabi.com"),
   title: {
-    default: "Dev Punjabi — Software Engineer",
+    default: "Dev Punjabi Portfolio Site",
     template: "%s · Dev Punjabi",
   },
   description:
-    "Software engineer in Toronto. Tech Consultant at Netlight, previously Periscope Capital. I build full-stack systems for high-volume financial operations.",
+    "Software engineer in Toronto. Tech Consultant at Netlight, previously Periscope Capital & Scotiabank. I build full-stack systems for high-volume financial operations.",
   openGraph: {
     type: "website",
     url: "https://devpunjabi.com",
