@@ -2,54 +2,77 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RoughNotation } from "react-rough-notation";
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FaAws,
+  FaBrain,
+  FaChartLine,
+  FaCubes,
+  FaDatabase,
+  FaEnvelope,
+  FaGithub,
+  FaJava,
+  FaLinkedin,
+  FaMicrosoft,
+  FaServer,
+} from "react-icons/fa";
+import {
+  SiApachecassandra,
+  SiBitbucket,
+  SiDocker,
+  SiDotnet,
+  SiFastapi,
+  SiGit,
+  SiGnubash,
+  SiJavascript,
+  SiJira,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNumpy,
+  SiPandas,
+  SiPostgresql,
+  SiPython,
+  SiPytorch,
+  SiReact,
+  SiSharp,
+  SiTypescript,
+  SiVercel,
+} from "react-icons/si";
+import type { IconType } from "react-icons";
 
-// Skills, grouped so the list reads as areas of work rather than a keyword wall.
-const skillGroups: { group: string; items: string[] }[] = [
-  {
-    group: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "C#", "Java", "SQL", "Bash"],
-  },
-  {
-    group: "Frameworks",
-    items: [
-      "React",
-      "Next.js",
-      "Node.js",
-      ".NET",
-      "Entity Framework",
-      "FastAPI",
-    ],
-  },
-  {
-    group: "Data",
-    items: [
-      "PostgreSQL",
-      "MySQL",
-      "Microsoft SQL Server",
-      "Cassandra",
-      "Qdrant",
-      "Pandas",
-      "NumPy",
-    ],
-  },
-  {
-    group: "ML & AI",
-    items: ["PyTorch", "Cohere", "Matplotlib"],
-  },
-  {
-    group: "Infrastructure & Tools",
-    items: [
-      "AWS",
-      "Docker",
-      "Vercel",
-      "Git",
-      "Bitbucket Pipelines",
-      "Bloomberg API",
-      "IBM DataStage",
-      "Jira",
-    ],
-  },
+// Skills as a single colourful row of brand badges.
+const skills: { label: string; Icon: IconType; color: string }[] = [
+  { label: "Python", Icon: SiPython, color: "#3776AB" },
+  { label: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+  { label: "JavaScript", Icon: SiJavascript, color: "#B8860B" },
+  { label: "C#", Icon: SiSharp, color: "#512BD4" },
+  { label: "Java", Icon: FaJava, color: "#C74634" },
+  { label: "SQL", Icon: FaDatabase, color: "#336791" },
+  { label: "Bash", Icon: SiGnubash, color: "#3E7A1D" },
+  { label: "React", Icon: SiReact, color: "#0B7C8C" },
+  { label: "Next.js", Icon: SiNextdotjs, color: "#1F2937" },
+  { label: "Node.js", Icon: SiNodedotjs, color: "#3C873A" },
+  { label: ".NET", Icon: SiDotnet, color: "#512BD4" },
+  { label: "Entity Framework", Icon: FaCubes, color: "#6B21A8" },
+  { label: "FastAPI", Icon: SiFastapi, color: "#009688" },
+  { label: "PostgreSQL", Icon: SiPostgresql, color: "#336791" },
+  { label: "MySQL", Icon: SiMysql, color: "#00618A" },
+  { label: "SQL Server", Icon: FaMicrosoft, color: "#A4262C" },
+  { label: "Cassandra", Icon: SiApachecassandra, color: "#1287B1" },
+  { label: "Qdrant", Icon: FaDatabase, color: "#B91C5C" },
+  { label: "Pandas", Icon: SiPandas, color: "#150458" },
+  { label: "NumPy", Icon: SiNumpy, color: "#4D77CF" },
+  { label: "PyTorch", Icon: SiPytorch, color: "#C2410C" },
+  { label: "Cohere", Icon: FaBrain, color: "#39594D" },
+  { label: "Matplotlib", Icon: FaChartLine, color: "#11557C" },
+  { label: "AWS", Icon: FaAws, color: "#C2590A" },
+  { label: "Docker", Icon: SiDocker, color: "#1D63ED" },
+  { label: "Vercel", Icon: SiVercel, color: "#1F2937" },
+  { label: "Git", Icon: SiGit, color: "#C2410C" },
+  { label: "Bitbucket", Icon: SiBitbucket, color: "#0052CC" },
+  { label: "Bloomberg API", Icon: FaChartLine, color: "#1F2937" },
+  { label: "IBM DataStage", Icon: FaServer, color: "#0F62FE" },
+  { label: "Jira", Icon: SiJira, color: "#0052CC" },
 ];
 
 export default function AboutMe() {
@@ -104,24 +127,19 @@ export default function AboutMe() {
           </div>
           <div className="mt-8 w-full">
             <h3 className="mb-4 text-center text-xl font-semibold">Skills</h3>
-            <div className="space-y-4">
-              {skillGroups.map(({ group, items }) => (
-                <div key={group}>
-                  <p className="mb-2 text-center text-xs font-semibold uppercase tracking-wider text-base-content/50">
-                    {group}
-                  </p>
-                  <ul className="flex flex-wrap justify-center gap-1.5">
-                    {items.map((label) => (
-                      <li key={label}>
-                        <span className="badge badge-sm badge-outline border-base-content/25 text-base-content/80">
-                          {label}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <ul className="flex flex-wrap justify-center gap-1.5">
+              {skills.map(({ label, Icon, color }) => (
+                <li key={label}>
+                  <span
+                    className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-semibold text-white shadow-sm ring-1 ring-white/20"
+                    style={{ backgroundColor: color }}
+                  >
+                    <Icon className="text-sm" aria-hidden />
+                    {label}
+                  </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
           <div className="flex justify-center mt-8">
             <RoughNotation
